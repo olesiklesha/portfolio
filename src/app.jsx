@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Navbar} from "./components/index.js";
 import './index.css';
+import {About, Contacts, Home, Projects} from "./pages/index.js";
 
 export const App = () => {
     return (
@@ -8,10 +9,10 @@ export const App = () => {
             <BrowserRouter>
                 <Navbar/>
                 <Routes>
-                    <Route path="/" element={'Home'}/>
-                    <Route path="/about" element={'About'}/>
-                    <Route path="/projects" element={'Projects'}/>
-                    <Route path="/contact" element={'Contact'}/>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/about" element={<About/>}/>
+                    <Route path="/projects" element={<Projects/>}/>
+                    <Route path="/contact" element={<Contacts/>}/>
                 </Routes>
             </BrowserRouter>
         </main>
