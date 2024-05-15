@@ -10,41 +10,22 @@ Title: Star Wars - Low Poly Hoth Skybox
 // import React, {useRef} from 'react';
 import {useGLTF} from '@react-three/drei';
 import skyBox from '../../assets/3d/skybox.glb';
-//
-// export function Model(props) {
-//     const {nodes, materials} = useGLTF('/skybox.glb');
-//     return (
-//         <group {...props} dispose={null}>
-//             <mesh
-//                 geometry={nodes.hoth_sky_lambert1_0.geometry}
-//                 material={materials.lambert1}
-//                 scale={267.253}
-//             />
-//             <mesh
-//                 geometry={nodes.cloud17_lambert1_0.geometry}
-//                 material={materials.lambert1}
-//                 position={[204.159, -227.504, 47.945]}
-//                 rotation={[0, -0.283, -3.106]}
-//                 scale={4.082}
-//             />
-//             <mesh
-//                 geometry={nodes.cloud18_lambert1_0.geometry}
-//                 material={materials.lambert1}
-//                 position={[113.759, 252.834, -176.519]}
-//                 rotation={[-0.06, 0.944, -3.085]}
-//                 scale={4.082}
-//             />
-//             <mesh geometry={nodes.clouds2_lambert1_0.geometry} material={materials.lambert1}/>
-//         </group>
-//     );
-// }
+import {useRef} from "react";
+import {useFrame} from "@react-three/fiber";
 
-
-export const Sky = () => {
+// eslint-disable-next-line react/prop-types
+export const Sky = ({isRotating}) => {
+    const ref = useRef();
     const sky = useGLTF(skyBox);
 
+    useFrame((_, delta) => {
+        if (isRotating) {
+            ref.current.rotation.y += 0.05 * delta;
+        }
+    });
+
     return (
-        <mesh>
+        <mesh ref={ref}>
             <primitive object={sky.scene}/>
         </mesh>
     );
