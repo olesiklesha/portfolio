@@ -2,7 +2,7 @@
 import {Canvas} from "@react-three/fiber";
 import {Suspense, useEffect, useState} from "react";
 import {Loader} from "../../components/index.js";
-import {Island, Sky} from "../../models/index.js";
+import {Bird, Island, Plane, Sky} from "../../models/index.js";
 
 {/*<div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">*/
 }
@@ -13,6 +13,16 @@ import {Island, Sky} from "../../models/index.js";
 export const Home = () => {
     const [isRotating, setIsRotating] = useState(false);
 
+    const adjustPlaneForScreenSize = () => {
+        let screenScale = [0.8, 0.8, 0.8];
+        let screenPosition = [0, -6, -7];
+
+        if (window.innerWidth < 768) {
+            screenScale = [0.85, 0.85, 0.85];
+        }
+
+        return [screenScale, screenPosition];
+    };
     const adjustIslandForScreenSize = () => {
         let screenScale = [1, 1, 1];
         let screenPosition = [0, -6.5, -43];
@@ -26,7 +36,7 @@ export const Home = () => {
     };
 
     const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
-
+    const [planeScale, planePosition] = adjustPlaneForScreenSize();
 
     return (
         <section className="w-full h-screen relative">
@@ -40,12 +50,19 @@ export const Home = () => {
                     <hemisphereLight skyColor="#ffffff" groundColor="#000" intensity={1}/>
 
                     <Sky/>
+                    <Bird/>
                     <Island
                         position={islandPosition}
                         scale={islandScale}
                         rotation={islandRotation}
                         isRotating={isRotating}
                         setIsRotating={setIsRotating}
+                    />
+                    <Plane
+                        isRotating={isRotating}
+                        position={planePosition}
+                        scale={planeScale}
+                        rotation={[0, 1.3, 0]}
                     />
                 </Suspense>
             </Canvas>

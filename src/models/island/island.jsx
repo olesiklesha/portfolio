@@ -31,16 +31,12 @@ export const Island = ({isRotating, setIsRotating, ...props}) => {
         e.preventDefault();
         setIsRotating(true);
 
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-
-        lastX.current = clientX;
+        lastX.current = e.touches ? e.touches[0].clientX : e.clientX;
     };
     const handlePointerUp = (e) => {
         e.stopPropagation();
         e.preventDefault();
         setIsRotating(false);
-
-
     };
     const handlePointerMove = (e) => {
         e.stopPropagation();
@@ -55,6 +51,20 @@ export const Island = ({isRotating, setIsRotating, ...props}) => {
             lastX.current = clientX;
             rotationSpeed.current = delta * 0.01 * Math.PI;
         }
+    };
+    const handleKeyDown = (e) => {
+        if (e.key === 'ArrowLeft') {
+            if (!isRotating) setIsRotating(true);
+            islandRef.current.rotation.y += 0.01 * Math.PI;
+        }
+
+        if (e.key === 'ArrowRight') {
+            if (!isRotating) setIsRotating(true);
+            islandRef.current.rotation.y -= 0.01 * Math.PI;
+        }
+    };
+    const handleKeyUp = (e) => {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') setIsRotating(false);
     };
 
     useFrame(() => {
@@ -110,13 +120,17 @@ export const Island = ({isRotating, setIsRotating, ...props}) => {
         canvas.addEventListener('pointerdown', handlePointerDown);
         canvas.addEventListener('pointerup', handlePointerUp);
         canvas.addEventListener('pointermove', handlePointerMove);
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
 
         return () => {
             canvas.removeEventListener('pointerdown', handlePointerDown);
             canvas.removeEventListener('pointerup', handlePointerUp);
             canvas.removeEventListener('pointermove', handlePointerMove);
+            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('keyup', handleKeyUp);
         };
-    }, [gl, handlePointerUp, handlePointerMove, handlePointerDown]);
+    }, [gl, handlePointerUp, handlePointerMove, handlePointerDown, handleKeyDown, handleKeyUp]);
 
 
     return (
