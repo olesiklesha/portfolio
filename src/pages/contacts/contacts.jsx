@@ -1,4 +1,5 @@
 import {useRef, useState} from "react";
+import emailjs from '@emailjs/browser';
 
 export const Contacts = () => {
     const [formState, setFormState] = useState({name: '', email: '', message: ''});
@@ -9,6 +10,28 @@ export const Contacts = () => {
         setFormState({...formState, [e.target.name]: e.target.value});
     };
     const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+
+        // TODO: email to env?
+        emailjs.send(
+            import.meta.env.VITE_APP_EMAIL_JS_SERVICE_ID,
+            import.meta.env.VITE_APP_EMAIL_JS_TEMPLATE_ID,
+            {
+                from_name: formState.name,
+                to_name: 'Aliaxei',
+                from_email: formState.email,
+                to_email: 'olesik736@gmail.com',
+                message: formState.message
+            },
+            import.meta.env.VITE_APP_EMAIL_JS_PUBLIC_KEY
+        ).then(() => {
+            setIsLoading(false);
+            setFormState({name: '', email: '', message: ''});
+        }).catch((error) => {
+            setIsLoading(false);
+            console.log(error);
+        });
     };
     const handleFocus = () => {
     };
