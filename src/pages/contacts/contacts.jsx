@@ -2,14 +2,16 @@
 import {Suspense, useRef, useState} from "react";
 import emailjs from '@emailjs/browser';
 import {Canvas} from "@react-three/fiber";
-import {Loader} from "../../components/index.js";
-import {Fox} from "../../models/index.js";
+import {Alert, Loader} from "../../components";
+import {Fox} from "../../models";
+import {useAlert} from "../../hooks";
 
 export const Contacts = () => {
     const [formState, setFormState] = useState({name: '', email: '', message: ''});
     const [isLoading, setIsLoading] = useState(false);
     const [currentAnimation, setCurrentAnimation] = useState('Fox_Idle');
     const formRef = useRef(null);
+    const {hideAlert, showAlert, alert} = useAlert();
 
     const handleChange = (e) => {
         setFormState({...formState, [e.target.name]: e.target.value});
@@ -31,13 +33,22 @@ export const Contacts = () => {
             },
             import.meta.env.VITE_APP_EMAIL_JS_PUBLIC_KEY
         ).then(() => {
+            setIsLoading(false);
+            showAlert({
+                text: 'Message sent successfully!',
+                type: 'success'
+            });
+
             setTimeout(() => {
-                setIsLoading(false);
+                hideAlert();
                 setFormState({name: '', email: '', message: ''});
                 setCurrentAnimation('Fox_Idle');
             }, 2000);
         }).catch((error) => {
             setIsLoading(false);
+            showAlert({
+                text: 'I did not receive your message',
+            });
             setCurrentAnimation('Fox_Idle');
             console.log(error);
         });
@@ -48,6 +59,7 @@ export const Contacts = () => {
 
     return (
         <section className="relative flex lg:flex-row flex-col max-container">
+            {alert.show && <Alert {...alert} />}
             <div className="flex-1 min-w-[50%] flex flex-col">
                 <h2 className="head-text">Get in touch</h2>
                 <form className="w-full flex flex-col gap-7 mt-14" onSubmit={handleSubmit}
@@ -108,7 +120,7 @@ export const Contacts = () => {
                         <directionalLight position={[0, 0, 1]} intensity={2}/>
                         <ambientLight intensity={0.5}/>
                         <Fox
-                            position={[0.5, -2, 0]}
+                            position={[0.5, -1.5, 0]}
                             rotation={[0.1, -0.7, 0]}
                             scale={[0.2, 0.2, 0.2]}
                             currentAnimation={currentAnimation}
