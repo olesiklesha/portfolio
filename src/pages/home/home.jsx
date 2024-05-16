@@ -1,15 +1,10 @@
 /* eslint-disable react/no-unknown-property */
 import {Canvas} from "@react-three/fiber";
-import {Suspense, useEffect, useState} from "react";
-import {Loader} from "../../components/index.js";
+import {Suspense, useState} from "react";
+import {HomeInfo, Loader} from "../../components/index.js";
 import {Bird, Island, Plane, Sky} from "../../models/index.js";
 
-{/*<div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">*/
-}
-{/*    popup*/
-}
-{/*</div>*/
-}
+
 export const Home = () => {
     const [isRotating, setIsRotating] = useState(false);
     const [currentStage, setCurrentStage] = useState(1);
@@ -39,7 +34,10 @@ export const Home = () => {
     const [planeScale, planePosition] = adjustPlaneForScreenSize();
 
     return (
-        <section className="w-full h-screen relative">
+        <section className="w-full h-screen relative bg-blue-400">
+            <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
+                {currentStage && <HomeInfo stage={currentStage}/>}
+            </div>
             <Canvas
                 className={`w-full h-full bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
                 camera={{near: 0.1, far: 1000}}
