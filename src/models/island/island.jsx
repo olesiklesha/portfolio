@@ -26,6 +26,7 @@ export const Island = ({isRotating, setIsRotating, setCurrentStage, ...props}) =
     const rotationSpeed = useRef(0);
     const dampingFactor = 0.95;
 
+    // TODO: refactor handlers
     const handlePointerDown = (e) => {
         e.stopPropagation();
         e.preventDefault();
