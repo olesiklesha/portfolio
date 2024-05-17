@@ -2,6 +2,7 @@ import {VerticalTimeline, VerticalTimelineElement} from 'react-vertical-timeline
 import 'react-vertical-timeline-component/style.min.css';
 
 import {experiences, skills} from "../../constants/index.js";
+import {ContactMe, Footer} from "../../components/index.js";
 
 export const About = () => {
     return (
@@ -97,6 +98,9 @@ export const About = () => {
             </div>
 
             <hr className="border-slate-200"/>
+            <ContactMe/>
+            <hr className="border-slate-200"/>
+            <Footer/>
         </section>
     );
 };
