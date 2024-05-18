@@ -7,7 +7,6 @@ import javascript from './javascript.svg';
 import mongodb from './mongodb.svg';
 import motion from './motion.svg';
 import mui from './mui.svg';
-import nextjs from './nextjs.svg';
 import nodejs from './nodejs.svg';
 import react from './react.svg';
 import redux from './redux.svg';
@@ -18,20 +17,27 @@ import linkedin from './linkedin.svg';
 import twitter from './twitter.svg';
 import car from './car.svg';
 import estate from './estate.svg';
-import pricewise from './pricewise.svg';
-import snapgram from './snapgram.svg';
-import summiz from './summiz.svg';
 import threads from './threads.svg';
 import arrow from './arrow.svg';
 import contact from './contact.svg';
-import soundon from './soundon.png';
-import soundoff from './soundoff.png';
 import rss from './rss.svg';
 import question from './question.svg';
 import antd from './ant-design.png';
 import jest from './jest.webp';
+import clever from './clever.svg';
+import trello from './trello.svg';
+import coffee from './coffee1.png';
+import quiz from './quiz.png';
+import momentum from './momentum.png';
+import samurai from './samurai.png';
 
 export {
+    samurai,
+    momentum,
+    quiz,
+    coffee,
+    trello,
+    clever,
     jest,
     antd,
     question,
@@ -45,7 +51,6 @@ export {
     mongodb,
     motion,
     mui,
-    nextjs,
     nodejs,
     react,
     redux,
@@ -56,12 +61,7 @@ export {
     twitter,
     car,
     estate,
-    pricewise,
-    snapgram,
-    summiz,
     threads,
     arrow,
     contact,
-    soundon,
-    soundoff
 };

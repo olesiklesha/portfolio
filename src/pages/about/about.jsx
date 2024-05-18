@@ -3,6 +3,8 @@ import 'react-vertical-timeline-component/style.min.css';
 
 import {experiences, skills} from "../../constants/index.js";
 import {ContactMe, Footer} from "../../components/index.js";
+import {Link} from "react-router-dom";
+import {arrow} from "../../assets/icons/index.js";
 
 export const About = () => {
     return (
@@ -91,6 +93,18 @@ export const About = () => {
                                         </li>
                                     ))}
                                 </ul>
+
+                                {el.linkUrl && (
+                                    <div className="mt-5 flex items-center gap-2 font-poppins">
+                                        <Link to={el.linkUrl} target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="font-semibold text-blue-600">
+                                            Link
+                                        </Link>
+                                        <img src={arrow} alt="arrow"
+                                             className="w-4 h-4 object-contain"/>
+                                    </div>
+                                )}
                             </VerticalTimelineElement>
                         ))}
                     </VerticalTimeline>
