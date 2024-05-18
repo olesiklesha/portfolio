@@ -3,8 +3,6 @@ import {NavLink, useLocation} from "react-router-dom";
 export const Navbar = () => {
     const location = useLocation();
 
-    console.log(location.pathname);
-
     const getLinkColor = (isActive) => {
         if (isActive) return 'text-blue-500';
 
