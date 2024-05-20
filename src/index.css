@@ -180,6 +180,12 @@ body:has(.card[data-color="green"]:hover) {
     border: #fff;
     box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
     0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+.neo-brutalism-white:hover {
+    box-shadow: 0.2vmin 0.2vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
+    0.25vmin 1vmin #d2e4ff, 1vmin 0.25vmin #d2e4ff;
 }
 
 .promptBox {

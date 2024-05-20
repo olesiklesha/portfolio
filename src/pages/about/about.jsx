@@ -55,10 +55,9 @@ export const About = () => {
 
                 <div className="mt-12 flex">
                     <VerticalTimeline>
-                        {experiences.map((el) => (
+                        {experiences.map((el, i) => (
                             <VerticalTimelineElement
-                                key={el.company_name}
-                                // date={el.date}
+                                key={el.company_name + i}
                                 icon={
                                     <div className="flex justify-center items-center w-full h-full">
                                         <img src={el.icon} alt={el.company_name}
@@ -95,7 +94,8 @@ export const About = () => {
                                 </ul>
 
                                 {el.linkUrl && (
-                                    <div className="mt-5 flex items-center gap-2 font-poppins">
+                                    <div
+                                        className="mt-5 flex items-center gap-2 hover:gap-3 font-poppins transition-all">
                                         <Link to={el.linkUrl} target="_blank"
                                               rel="noopener noreferrer"
                                               className="font-semibold text-blue-600">
