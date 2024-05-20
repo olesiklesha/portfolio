@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unknown-property */
+/* eslint-disable react/prop-types */
 // noinspection t
 
 /*
@@ -16,8 +17,12 @@ import {a} from '@react-spring/three';
 import islandScene from '../../assets/3d/island.glb';
 import {useFrame, useThree} from "@react-three/fiber";
 
-// eslint-disable-next-line react/prop-types
-export const Island = ({isRotating, setIsRotating, setCurrentStage, ...props}) => {
+export const Island = ({
+                           isRotating,
+                           setIsRotating,
+                           setCurrentStage,
+                           ...props
+                       }) => {
     const islandRef = useRef();
     const {gl, viewport} = useThree();
     const {nodes, materials} = useGLTF(islandScene);

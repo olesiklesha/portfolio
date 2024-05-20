@@ -4,3 +4,4 @@ export {HomeInfo} from "./home-info";
 export {Alert} from "./alert";
 export {ContactMe} from "./contact-me";
 export {Footer} from "./footer";
+export {HintBox} from "./hint-box";
