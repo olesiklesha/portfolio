@@ -17,19 +17,19 @@ const renderContent = {
         <h2 className="sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5">
             Hi, I am <span className="font-semibold">Aliaksei</span>
             <br/>
-            A Frontend Developer
+            A Front-end Developer
         </h2>
     ),
     2: (
         <InfoBox
-            text="Worked with many companies and picked up many skills along the way"
+            text="I studied on my own and also took various courses, improving my skills"
             link="/about"
             btnText="Learn more"
         />
     ),
     3: (
         <InfoBox
-            text="Led multiple projects to success over the years. Curious about th empact?"
+            text="Developed multiple projects over the years. Curious about the projects?"
             link="/projects"
             btnText="Visit my portfolio"
         />
